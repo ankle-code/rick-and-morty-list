@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import ListingCharacters from './components/ListingCharacters';
+import { Character } from './types'
+
+type DataResponse = {
+  info: {
+    count: number
+  }
+  results: Character[]
+}
 
 function App() {
-  const [data, setData] = useState()
+  const [data, setData] = useState<DataResponse>()
 
   useEffect(() => {
     fetch('https://rickandmortyapi.com/api/character')
@@ -24,7 +32,7 @@ function App() {
 
       <h3>Número total de Personagens: {renderTotalChracter()}</h3>
 
-      <ListingCharacters chracters={data?.results}/>
+      <ListingCharacters characters={data?.results}/>
     
     </div>
   );

@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import ImageCard from '../imageCard'
+import { Character } from '../../types'
 
-const CharactersCard = (props) => {
+type CharactersCardProps = {
+  index: number
+  character: Character
+}
+
+const CharactersCard = (props: CharactersCardProps) => {
     const character = props.character
     const firstEpisodeUrl = character.episode[0]
 
@@ -14,7 +20,7 @@ const CharactersCard = (props) => {
       .then((response) => { setFirstEpisodeNameState(response.name) })
     })
 
-    const getStatusColor = (status) => {
+    const getStatusColor = (status: string) => {
         if(status === 'Alive') {
             return '--alive'
         }
